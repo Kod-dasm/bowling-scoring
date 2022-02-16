@@ -12,34 +12,22 @@ export default class Calculator {
         const pointsForCast: string = frames[frame][cast];
         
         if(pointsForCast === 'X') {
-          score += 10;
           prizePoints[frame] = 2;
         }
         else if(pointsForCast === '/' && cast === 1) {
-          score += 10 - Number(frames[frame][0]);
           prizePoints[frame] = 1;
         }
-        else if(Number(pointsForCast) > 0) {
-          score += Number(pointsForCast);
-        }
+
+        score += this.calculateScoreCast(pointsForCast, frames[frame], cast);
 
         if(frame > 0) {
           const checkedCountFrame: number = frame === 1 ? 1 : 2; 
 
           for(let countPrize: number = checkedCountFrame; countPrize > 0; countPrize--) {
-            let prize: number = 0;
-
-            if(pointsForCast === 'X') {
-              prize = 10;
-            }
-            else if(pointsForCast === '/' && cast === 1) {
-              prize = 10 - Number(frames[frame][0]);
-            }
-            else if(Number(pointsForCast) > 0) {
-              prize = Number(pointsForCast);
-            }
+            let prize: number = this.calculateScoreCast(pointsForCast, frames[frame], cast);
 
             if(prizePoints[frame - countPrize] > 0) {
+              prizePoints[frame - countPrize]--
               score += prize;
             }
           }
@@ -48,6 +36,21 @@ export default class Calculator {
     }
     
     return score;
+  }
+
+  calculateScoreCast(pointsForCast: string, frame: string, cast: number): number {
+    let points: number = 0
+
+    if(pointsForCast === 'X') {
+      points = 10;
+    }
+    else if(pointsForCast === '/' && cast === 1) {
+      points = 10 - Number(frame[0]);
+    }
+    else if(Number(pointsForCast) > 0) {
+      points = Number(pointsForCast);
+    }
+    return points;
   }
 }
 
