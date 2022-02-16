@@ -3,19 +3,41 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Calculator {
     calculateScore(str) {
-        // const frames: string[] = str.split("|");
-        // const prizePoints = [...Array(frames.length).fill(0)];
+        const frames = str.split("|");
+        const prizePoints = [...Array(frames.length).fill(0)];
         let score = 0;
-        for (let frame = 0; frame < str.length; frame++) {
-            const pointsForCast = str[frame];
-            if (pointsForCast === 'X') {
-                score += 10;
-            }
-            else if (pointsForCast === '/' && frame === 1) {
-                score += 10 - Number(str[0]);
-            }
-            else if (Number(pointsForCast) > 0) {
-                score += Number(pointsForCast);
+        for (let frame = 0; frame < frames.length; frame++) {
+            for (let cast = 0; cast < frames[frame].length; cast++) {
+                const pointsForCast = frames[frame][cast];
+                if (pointsForCast === 'X') {
+                    score += 10;
+                    prizePoints[frame] = 2;
+                }
+                else if (pointsForCast === '/' && cast === 1) {
+                    score += 10 - Number(frames[frame][0]);
+                    prizePoints[frame] = 1;
+                }
+                else if (Number(pointsForCast) > 0) {
+                    score += Number(pointsForCast);
+                }
+                if (frame > 0) {
+                    const checkedCountFrame = frame === 1 ? 1 : 2;
+                    for (let countPrize = checkedCountFrame; countPrize > 0; countPrize--) {
+                        let prize = 0;
+                        if (pointsForCast === 'X') {
+                            prize = 10;
+                        }
+                        else if (pointsForCast === '/' && cast === 1) {
+                            prize = 10 - Number(frames[frame][0]);
+                        }
+                        else if (Number(pointsForCast) > 0) {
+                            prize = Number(pointsForCast);
+                        }
+                        if (prizePoints[frame - countPrize] > 0) {
+                            score += prize;
+                        }
+                    }
+                }
             }
         }
         return score;

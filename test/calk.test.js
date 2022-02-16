@@ -13,8 +13,8 @@ describe("test calculateScore methods", () => {
         const bowlingScore = bowling.calculateScore("X");
         expect(bowlingScore).toBe(10);
     });
-    // it("should return 14 for calculateScore('X')", () => {
-    //   const bowlingScore: number = bowling.calculateScore("X|11");
-    //   expect(bowlingScore).toBe(14);
-    // });
+    it("should return 14 for calculateScore(X|11)", () => {
+        const bowlingScore = bowling.calculateScore("X|11");
+        expect(bowlingScore).toBe(14);
+    });
 });
