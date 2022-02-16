@@ -4,7 +4,7 @@ describe("test calculateScore methods", () => {
   let bowling: Calculator;
 
   beforeEach(() => {
-    bowling  = new Calculator();
+    bowling = new Calculator();
   });
 
   it("should return 10 for calculateScore(X)", () => {
