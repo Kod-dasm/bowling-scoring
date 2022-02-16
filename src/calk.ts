@@ -5,8 +5,19 @@ export default class Calculator {
     // const frames: string[] = str.split("|");
     // const prizePoints = [...Array(frames.length).fill(0)];
     let score: number = 0;
+    
     for(let frame: number = 0; frame < str.length; frame++) {
+      const pointsForCast: string = str[frame];
       
+      if(pointsForCast === 'X') {
+        score += 10;
+      }
+      else if(pointsForCast === '/' && frame === 1) {
+        score += 10 - Number(str[0]);
+      }
+      else if(Number(pointsForCast) > 0) {
+        score += Number(pointsForCast);
+      }
     }
     
     return score;

@@ -7,7 +7,7 @@ describe("test calculateScore methods", () => {
     bowling  = new Calculator();
   });
 
-  it("should return 10 for calculateScore('X')", () => {
+  it("should return 10 for calculateScore(X)", () => {
     const bowlingScore: number = bowling.calculateScore("X");
 
     expect(bowlingScore).toBe(10);
