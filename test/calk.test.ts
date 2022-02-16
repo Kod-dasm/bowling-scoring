@@ -13,9 +13,9 @@ describe("test calculateScore methods", () => {
     expect(bowlingScore).toBe(10);
   });
 
-  // it("should return 14 for calculateScore('X')", () => {
-  //   const bowlingScore: number = bowling.calculateScore("X|11");
+  it("should return 14 for calculateScore(X|11)", () => {
+    const bowlingScore: number = bowling.calculateScore("X|11");
 
-  //   expect(bowlingScore).toBe(14);
-  // });
+    expect(bowlingScore).toBe(14);
+  });
 });
