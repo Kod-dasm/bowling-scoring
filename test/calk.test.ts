@@ -24,8 +24,17 @@ describe("test calculateScore methods", () => {
 
   it("should return 14 for calculateScore(X|11)", () => {
     const bowlingScore: number = bowling.calculateScore("X|11");
+    const bowlingFrame: string = bowling.showFrame(1);
 
     expect(bowlingScore).toBe(14);
+    expect(bowlingFrame).toBe(`
+    ----------------
+    frame [2]
+    result [1 1] 
+    frameScore [2]
+    total [14]
+    ----------------
+    `);
   });
 
 });
