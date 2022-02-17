@@ -92,7 +92,9 @@ export default class Calculator {
     total [${arrayFrames[numberFrame].total}]
     ----------------
     `
+    
     console.log(str)
+
     return str
   }
 }
