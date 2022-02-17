@@ -51,4 +51,19 @@ describe("test calculateScore methods", () => {
     ----------------
     `);
   });
+
+  it("should return 44 for calculateScore(X|7/|7) and second frame for showFrame(2)", () => {
+    const bowlingScore: number = bowling.calculateScore("X|7/|7");
+    const bowlingFrame: string = bowling.showFrame(2);
+
+    expect(bowlingScore).toBe(44);
+    expect(bowlingFrame).toBe(`
+    ----------------
+    frame [3]
+    result [7] 
+    frameScore [7]
+    total [44]
+    ----------------
+    `);
+  });
 });
