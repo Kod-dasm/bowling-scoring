@@ -67,7 +67,7 @@ describe("test calculateScore methods", () => {
     `);
   });
 
-  it("should return 44 for calculateScore(X|7/|72|9/|X) and second frame for showFrame(3)", () => {
+  it("should return 76 for calculateScore(X|7/|72|9/|X) and second frame for showFrame(3)", () => {
     const bowlingScore: number = bowling.calculateScore("X|7/|72|9/|X");
     const bowlingFrame: string = bowling.showFrame(3);
 
@@ -78,6 +78,21 @@ describe("test calculateScore methods", () => {
     result [9 /] 
     frameScore [20]
     total [66]
+    ----------------
+    `);
+  });
+
+  it("should return 165 for calculateScore(X|7/|72|9/|X|X|X|23|6/|7/) and second frame for showFrame(7)", () => {
+    const bowlingScore: number = bowling.calculateScore("X|7/|72|9/|X|X|X|23|6/|7/");
+    const bowlingFrame: string = bowling.showFrame(7);
+
+    expect(bowlingScore).toBe(165);
+    expect(bowlingFrame).toBe(`
+    ----------------
+    frame [8]
+    result [2 3] 
+    frameScore [5]
+    total [138]
     ----------------
     `);
   });
