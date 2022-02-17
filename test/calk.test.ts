@@ -96,4 +96,19 @@ describe("test calculateScore methods", () => {
     ----------------
     `);
   });
+
+  it("should return 168 for calculateScore(X|7/|72|9/|X|X|X|23|6/|7/) and second frame for showFrame(9)", () => {
+    const bowlingScore: number = bowling.calculateScore("X|7/|72|9/|X|X|X|23|6/|7/3");
+    const bowlingFrame: string = bowling.showFrame(9);
+
+    expect(bowlingScore).toBe(168);
+    expect(bowlingFrame).toBe(`
+    ----------------
+    frame [10]
+    result [7 / 3] 
+    frameScore [13]
+    total [168]
+    ----------------
+    `);
+  });
 });
