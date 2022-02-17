@@ -50,7 +50,7 @@ export default class Calculator {
 
             if (prizePoints[numFrame] > 0) {
               prizePoints[numFrame]--;
-              for(let i: number = numFrame; i < frame;i++) {
+              for(let i: number = numFrame; i <= frame;i++) {
                 arrayFrames[i].total += prize;  
               }
               arrayFrames[numFrame].frameScore += prize;
@@ -58,7 +58,9 @@ export default class Calculator {
             }
           }
         }
-        curFrame.frameScore = score - curFrame.total;
+        const lastScoreFrame: number = frame > 0 ? arrayFrames[frame - 1].total : 0
+
+        curFrame.frameScore = score - lastScoreFrame;
         curFrame.total = score;
       }
     }
