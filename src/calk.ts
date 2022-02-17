@@ -58,4 +58,9 @@ export default class Calculator {
     }
     return points;
   }
+
+  showFrame(numberFrame: number): string {
+    let str: string = ''
+    return str
+  }
 }
