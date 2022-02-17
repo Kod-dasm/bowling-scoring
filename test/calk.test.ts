@@ -1,9 +1,21 @@
-import { add } from "../src/calk";
-describe("test add function", () => {
-  it("should return 15 for add(10,5)", () => {
-    expect(add(10, 5)).toBe(15);
+import Calculator from "../src/calk";
+
+describe("test calculateScore methods", () => {
+  let bowling: Calculator;
+
+  beforeEach(() => {
+    bowling = new Calculator();
   });
-it("should return 5 for add(2,3)", () => {
-    expect(add(2, 3)).toBe(5);
+
+  it("should return 10 for calculateScore(X)", () => {
+    const bowlingScore: number = bowling.calculateScore("X");
+
+    expect(bowlingScore).toBe(10);
+  });
+
+  it("should return 14 for calculateScore(X|11)", () => {
+    const bowlingScore: number = bowling.calculateScore("X|11");
+
+    expect(bowlingScore).toBe(14);
   });
 });
