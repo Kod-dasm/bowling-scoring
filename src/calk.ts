@@ -1,23 +1,8 @@
-// class Game {
-//   constructor(str: string[]) {
-//     this.frames = str;
-// }
-
-// distributeFrames () {
-
-// }
-//   numberFrame?: number, 
-//   result?: string, 
-//   frameScore?: number, 
-//   total?: number,
-//   bonus?: number
-// }
 interface Frame {
   numberFrame?: number, 
   result?: string, 
   frameScore: number, 
   total: number
-  // bonus?: number
 }
 let arrayFrames: Frame[];
 
@@ -47,7 +32,6 @@ export default class Calculator {
         }
 
         score += this.calculateScoreCast(pointsForCast, frames[frame], cast);
-        curFrame.frameScore = score - curFrame.total;
 
         if (frame > 0) {
           const checkedCountFrame: number = frame === 1 ? 1 : 2;
@@ -74,6 +58,7 @@ export default class Calculator {
             }
           }
         }
+        curFrame.frameScore = score - curFrame.total;
         curFrame.total = score;
       }
     }
