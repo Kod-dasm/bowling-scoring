@@ -66,4 +66,19 @@ describe("test calculateScore methods", () => {
     ----------------
     `);
   });
+
+  it("should return 44 for calculateScore(X|7/|72|9/|X) and second frame for showFrame(3)", () => {
+    const bowlingScore: number = bowling.calculateScore("X|7/|72|9/|X");
+    const bowlingFrame: string = bowling.showFrame(3);
+
+    expect(bowlingScore).toBe(76);
+    expect(bowlingFrame).toBe(`
+    ----------------
+    frame [4]
+    result [9 /] 
+    frameScore [20]
+    total [66]
+    ----------------
+    `);
+  });
 });
