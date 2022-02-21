@@ -10,7 +10,7 @@ export default class Calculator {
 
   calculateScore(str: string): number {
     arrayFrames = [];
-    const frames: string[] = str.split("|");
+    const frames: string[] = str.split("|").filter(frame => frame.length > 0);
     
     const prizePoints = [...Array(frames.length).fill(0)];
     let score: number = 0;
