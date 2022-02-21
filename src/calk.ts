@@ -1,6 +1,6 @@
-interface Frame {
-  numberFrame?: number, 
-  result?: string, 
+export interface Frame {
+  numberFrame: number, 
+  result: string, 
   frameScore: number, 
   total: number
 }
@@ -85,18 +85,8 @@ export default class Calculator {
     return points;
   }
 
-  showFrame(numberFrame: number): string {
-    let str: string = `
-    ----------------
-    frame [${arrayFrames[numberFrame].numberFrame}]
-    result [${arrayFrames[numberFrame].result}] 
-    frameScore [${arrayFrames[numberFrame].frameScore}]
-    total [${arrayFrames[numberFrame].total}]
-    ----------------
-    `
-    
-    console.log(str)
+  showFrame(numberFrame: number): Frame {
 
-    return str
+    return arrayFrames[numberFrame];
   }
 }
