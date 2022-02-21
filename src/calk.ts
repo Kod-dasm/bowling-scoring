@@ -1,12 +1,29 @@
+interface Frame {
+  numberFrame?: number, 
+  result?: string, 
+  frameScore: number, 
+  total: number
+}
+let arrayFrames: Frame[];
+
 export default class Calculator {
+
   calculateScore(str: string): number {
+    arrayFrames = [];
     const frames: string[] = str.split("|");
+    
     const prizePoints = [...Array(frames.length).fill(0)];
     let score: number = 0;
 
     for (let frame: number = 0; frame < frames.length; frame++) {
+      arrayFrames.push({ numberFrame: frame + 1, result: '', frameScore: 0, total: score })
       for (let cast: number = 0; cast < frames[frame].length; cast++) {
         const pointsForCast: string = frames[frame][cast];
+        const curFrame: Frame = arrayFrames[frame];
+
+        cast === 0 
+        ? curFrame.result = pointsForCast
+        : curFrame.result += ' ' + pointsForCast
 
         if (pointsForCast === "X") {
           prizePoints[frame] = 2;
@@ -24,18 +41,25 @@ export default class Calculator {
             countPrize > 0;
             countPrize--
           ) {
+            const numFrame: number = frame - countPrize;
             let prize: number = this.calculateScoreCast(
               pointsForCast,
               frames[frame],
               cast
             );
 
-            if (prizePoints[frame - countPrize] > 0) {
-              prizePoints[frame - countPrize]--;
+            if (prizePoints[numFrame] > 0) {
+              prizePoints[numFrame]--;
+              for(let i: number = numFrame; i < frame;i++) {
+                arrayFrames[i].total += prize;  
+              }
+              arrayFrames[numFrame].frameScore += prize;
               score += prize;
             }
           }
         }
+        curFrame.frameScore = score - curFrame.total;
+        curFrame.total = score;
       }
     }
 
@@ -57,5 +81,18 @@ export default class Calculator {
       points = Number(pointsForCast);
     }
     return points;
+  }
+
+  showFrame(numberFrame: number): string {
+    let str: string = `
+    ----------------
+    frame [${arrayFrames[numberFrame].numberFrame}]
+    result [${arrayFrames[numberFrame].result}] 
+    frameScore [${arrayFrames[numberFrame].frameScore}]
+    total [${arrayFrames[numberFrame].total}]
+    ----------------
+    `
+    console.log(str)
+    return str
   }
 }
