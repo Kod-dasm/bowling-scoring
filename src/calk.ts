@@ -1,29 +1,33 @@
 export interface Frame {
-  numberFrame: number, 
-  result: string, 
-  frameScore: number, 
-  total: number
+  numberFrame: number;
+  result: string;
+  frameScore: number;
+  total: number;
 }
-let arrayFrames: Frame[];
 
 export default class Calculator {
+  arrayFrames: Frame[] =[];
 
   calculateScore(str: string): number {
-    arrayFrames = [];
-    const frames: string[] = str.split("|").filter(frame => frame.length > 0);
-    
+    const frames: string[] = str.split("|").filter((frame) => frame.length > 0);
+
     const prizePoints = [...Array(frames.length).fill(0)];
     let score: number = 0;
 
     for (let frame: number = 0; frame < frames.length; frame++) {
-      arrayFrames.push({ numberFrame: frame + 1, result: '', frameScore: 0, total: score })
+      this.arrayFrames.push({
+        numberFrame: frame + 1,
+        result: "",
+        frameScore: 0,
+        total: score,
+      });
       for (let cast: number = 0; cast < frames[frame].length; cast++) {
         const pointsForCast: string = frames[frame][cast];
-        const curFrame: Frame = arrayFrames[frame];
+        const curFrame: Frame = this.arrayFrames[frame];
 
-        cast === 0 
-        ? curFrame.result = pointsForCast
-        : curFrame.result += ' ' + pointsForCast
+        cast === 0
+          ? (curFrame.result = pointsForCast)
+          : (curFrame.result += " " + pointsForCast);
 
         if (pointsForCast === "X") {
           prizePoints[frame] = 2;
@@ -50,15 +54,16 @@ export default class Calculator {
 
             if (prizePoints[numFrame] > 0) {
               prizePoints[numFrame]--;
-              for(let i: number = numFrame; i <= frame;i++) {
-                arrayFrames[i].total += prize;  
+              for (let i: number = numFrame; i <= frame; i++) {
+                this.arrayFrames[i].total += prize;
               }
-              arrayFrames[numFrame].frameScore += prize;
+              this.arrayFrames[numFrame].frameScore += prize;
               score += prize;
             }
           }
         }
-        const lastScoreFrame: number = frame > 0 ? arrayFrames[frame - 1].total : 0
+        const lastScoreFrame: number =
+          frame > 0 ? this.arrayFrames[frame - 1].total : 0;
 
         curFrame.frameScore = score - lastScoreFrame;
         curFrame.total = score;
@@ -86,7 +91,6 @@ export default class Calculator {
   }
 
   showFrame(numberFrame: number): Frame {
-
-    return arrayFrames[numberFrame];
+    return this.arrayFrames[numberFrame];
   }
 }
